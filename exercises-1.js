@@ -47,7 +47,7 @@ function sum(){
 
 console.assert( sum(1, 2, 3, 4, 5) === 15 )
 
-// for each example
+// for each example   
 
 var total = 0
 args.forEach(function(el,index,array) {
@@ -93,14 +93,17 @@ return large;
 console.assert( largest(2, 4, 6, 8) === 8 )
 
 // forEAch example
-
-args.forEach(function (element,index, array) {
-  if (element > largest) {
-    largest = element;
-  }
-})
-return largest;
+function largest2() {
+  var args = [].slice.call(arguments);
+  args.forEach(function (element) {
+    if (element > largest) {
+      largest = element;
+    }
+  })
+  return largest;
 }
+largest2(1,2,3,4,5);
+
 // 4. find the longest string of the inputs (returns the longest input (A STRING))
 
 function longest(){
@@ -112,7 +115,7 @@ function longest(){
     length = 0;
     longer = " ";
     for (i=0;i<args.length; i++){
-      if(args[i].length> length){
+      if(args[i].length> longer.length){
         length=args[i].length;
         longer = args[i];
       }
