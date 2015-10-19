@@ -14,7 +14,7 @@
 
 function forEach(array, callback){
 
-for (i=0;i < array.length; i++) {
+for (var i=0;i < array.length; i++) {
   var a = array[i];
   console.log(a);
   callback(a);
@@ -24,7 +24,9 @@ for (i=0;i < array.length; i++) {
 
 // testing your code with console.assert
 var total = 1;
-forEach([1, 2, 3, 4], function(a){ total *= a; });
+forEach([1, 2, 3, 4], function(a){
+  total *= a;
+});
 // and finally assert; if this fails, the program stops
 console.assert(total === 24);
 
@@ -47,7 +49,7 @@ function sum(){
 
 console.assert( sum(1, 2, 3, 4, 5) === 15 )
 
-// for each example   
+// for each example
 
 var total = 0
 args.forEach(function(el,index,array) {
@@ -73,6 +75,13 @@ function average(){
 average(2,3,4,5)
 
 console.assert( average(2, 4, 6, 8) === 5 )
+
+// OR
+howManyThings = args.length
+var sum = 0;
+var iterator = function(currItem);
+args.forEach(iterator);
+
 
 // 3. find the largest number of the inputs (returns the largest input (A NUMBER))
 
@@ -104,6 +113,21 @@ function largest2() {
 }
 largest2(1,2,3,4,5);
 
+// OR
+// compare each item with current biggest number
+// if current number is larger than biggest, assign current to biggest
+// return biggestNum
+var biggestNum = 0;
+args.forEach(function (currItem, idx, arr) {
+  if (currItem > biggestNum) {
+    biggestNum = currItem;
+  }
+
+
+});
+return biggestNum;
+// return has to be outside of the for loop, but inside the function
+
 // 4. find the longest string of the inputs (returns the longest input (A STRING))
 
 function longest(){
@@ -124,6 +148,21 @@ function longest(){
 };
 
  console.assert( longest("this", "is", "a", "awesome", "function") === "function" );
+
+// OR
+// find longest string of inputs from the parameter
+// "this is a string".length
+// we can create a variable for the longest string
+// and compare when we iterate to the current argument
+var longestString = "";
+args.forEach(function(currItem, idx, arr) {
+if (longestString.length < currItem.length) {
+  longestString = currItem;
+}
+});
+return longestString;
+
+
 
 /**
  * PART II
@@ -156,6 +195,8 @@ var lastName = ["Farr"];
 var fullName = family.concat(lastName);
 console.log(fullName);
 console.assert(fullName[1]=== "Farr");
+// or
+["hey there"].concat(["Lauren","Farr"])
 // .indexOf()
 var array1 = ["Lauren", "Janis", "Eric", "Ken"];
 var array2 = array1.indexOf("Janis");
@@ -183,11 +224,13 @@ console.assert (family[4] === "Bella");
 var array1 = ["Lauren", "Janis", "Eric", "Ken"];
 var array2 = array1.slice(2,3);
 console.assert (arrayEquals([array2], ["Eric"]));
+// returns what is left after slicing the rest away
 
 // .splice()
 var array1 = ["Lauren", "Janis", "Eric", "Ken"];
 var array2 = array1.splice(0,1);
 console.assert (arrayEquals([array2],["Lauren"]))
+// slices out what you want to keep
 
 // .shift()
 var family = ["Lauren", "Janis", "Eric", "Ken"];
